@@ -1,0 +1,25 @@
+ar=5;
+b_f=120;
+b_r=0.3;
+j_s=2.*(10.^-16);
+t=300;
+k=1.36.*(10.^(-23));
+q=1.6.*(10.^(-19));
+v_t=(k.*t)./q;
+v_bc=-1;
+v_be=(0.3:0.01:0.65);
+i_s=j_s.*ar;
+a_f=(b_f)./(1+b_f);
+a_r=(b_r)./(1+b_r);
+i_es=i_s./a_f;
+i_cs=i_s./a_r;
+i_f=i_es.*(exp(v_be./v_t)-1);
+i_r=i_cs.*(exp(v_bc./v_t)-1);
+i_e=(-a_r.*i_r)+i_f;
+i_c=(a_f.*i_f)-i_r;
+plot(v_be,i_e);
+xlabel('V_B_E');
+ylabel('I_E');
+title('Input Charecteristics of npn BJT');
+grid on;
+
